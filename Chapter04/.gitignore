@@ -3,5 +3,6 @@
 *.o
 *.exe
 *.out
+*.bin
 # VS Code settings
 .vscode/
