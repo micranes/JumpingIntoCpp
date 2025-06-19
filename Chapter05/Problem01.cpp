@@ -26,6 +26,7 @@ int main(){
         else{
             cout<<"\n\n"<<bottleCount<<" bottles of beer on the wall,\n"<<bottleCount<<" bottles of beer.\nTake 1 down pass it around,\n"<<--bottleCount<<" bottles of beer on the wall.";
         }
+        
     }
     return 0;
 
