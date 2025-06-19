@@ -11,34 +11,44 @@ int main()
 {
     string theOperator;
     float firstNumber;
-    float SecondNumber;
-
+    float secondNumber;
+//Begin input section with validation
     cout<<"\n\nEnter the operation you wish to perform: (+,-,*,/):\n";
     cin>>theOperator;
     if(!(theOperator=="+" || theOperator=="-" || theOperator=="*" || theOperator=="/"))
     {
-        cout<<"\nInvalid selection!\n";
-        return 0;
+        cout<<"\n"<<theOperator<<" is and invalid selection!\n";
+        return 1;
+    }
+    cout<<"\n\nEnter the first number :";
+    if(!(cin>>firstNumber)){
+        cout<<"\nThis is not a number.\n";
+        return 1;
+    }
+    cout<<"\n\nEnter the second number :";
+    if(!(cin>>secondNumber)){
+        cout<<"\nThis is not a number.\n";
+        return 1;
+    }else if (theOperator == "/" && secondNumber == 0){
+        cout<<"\nNo division by zero!\n";
+        return 1;
     }
 
-    cout<<"\n\nEnter the first number :";
-    cin>>firstNumber;
-    cout<<"\n\nEnter the second number :";
-    cin>>SecondNumber;
+//End input section.
+
+//Begin processing data section.
     if(theOperator=="+")
     {
-        cout<<"\n\nThe answer to "<<firstNumber<<" "<<theOperator<<" "<<SecondNumber<<" = "<<firstNumber+SecondNumber<<"\n\n";
+        cout<<"\n\nThe answer to "<<firstNumber<<" + "<<secondNumber<<" = "<<firstNumber+secondNumber<<"\n\n";
+    }else if(theOperator=="-")
+    {
+        cout<<"\n\nThe answer to "<<firstNumber<<" - "<<secondNumber<<" = "<<firstNumber-secondNumber<<"\n\n";
+    }else if(theOperator=="*")
+    {
+        cout<<"\n\nThe answer to "<<firstNumber<<" * "<<secondNumber<<" = "<<firstNumber*secondNumber<<"\n\n";
+    }else if(theOperator=="/")
+    {
+        cout<<"\n\nThe answer to "<<firstNumber<<" / "<<secondNumber<<" = "<<firstNumber/secondNumber<<"\n\n";
     }
-    if(theOperator=="-")
-    {
-        cout<<"\n\nThe answer to "<<firstNumber<<" "<<theOperator<<" "<<SecondNumber<<" = "<<firstNumber-SecondNumber<<"\n\n";
-    }if(theOperator=="*")
-    {
-        cout<<"\n\nThe answer to "<<firstNumber<<" "<<theOperator<<" "<<SecondNumber<<" = "<<firstNumber*SecondNumber<<"\n\n";
-    }if(theOperator=="/")
-    {
-        cout<<"\n\nThe answer to "<<firstNumber<<" "<<theOperator<<" "<<SecondNumber<<" = "<<firstNumber/SecondNumber<<"\n\n";
-    }
-
     return 0;
 }
