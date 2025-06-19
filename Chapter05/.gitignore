@@ -1,8 +1,0 @@
-# Build files
-/build/
-*.o
-*.exe
-*.out
-*.bin
-# VS Code settings
-.vscode/
