@@ -15,6 +15,12 @@ int main()
 
     cout<<"\n\nEnter the operation you wish to perform: (+,-,*,/):\n";
     cin>>theOperator;
+    if(!(theOperator=="+" || theOperator=="-" || theOperator=="*" || theOperator=="/"))
+    {
+        cout<<"\nInvalid selection!\n";
+        return 0;
+    }
+
     cout<<"\n\nEnter the first number :";
     cin>>firstNumber;
     cout<<"\n\nEnter the second number :";
@@ -34,4 +40,5 @@ int main()
         cout<<"\n\nThe answer to "<<firstNumber<<" "<<theOperator<<" "<<SecondNumber<<" = "<<firstNumber/SecondNumber<<"\n\n";
     }
 
+    return 0;
 }
