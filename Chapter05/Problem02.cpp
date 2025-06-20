@@ -28,13 +28,13 @@ int main(){
             cout<<"\n\t\t\t\t2. Better Choice";
         }else if (choice==3)
         {
-            cout<<"\n\t\t\t\t2. Best Choice";
+            cout<<"\n\t\t\t\t3. Best Choice";
         }else if (choice==4)
         {
-            cout<<"\n\t\t\t\t2. Super Choice";
+            cout<<"\n\t\t\t\t4. Super Choice";
         }else if (choice==5)
         {
-            cout<<"\n\t\t\t\t2. Mega Super Choice";
+            cout<<"\n\t\t\t\t5. Mega Super Choice";
         }else if (choice==6)
         {
             loopTrigger = 0;
