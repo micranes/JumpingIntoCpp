@@ -17,10 +17,7 @@ int userinput();
 string numberToText(int sourceNumber);
 string below19(int sourceNumber);
 string upToHundred(int sourceNumber);
-string hundreds(int sourceNumber);
-string thousands(int sourceNumber);
-string millions(int sourceNumber);
-string billions(int sourceNumber);
+
 
 
 //-------------START MAIN--------------
@@ -67,76 +64,10 @@ string numberToText(int sourceNumber){
     {
        buildString = buildString + upToHundred(sourceNumber);
     }
-    //Hundreds placeholder
-    if (sourceNumber>99 && sourceNumber<1000)
-    {
-        buildString = buildString + hundreds(sourceNumber);
-    }
-    //Thousands placeholder
-    if (sourceNumber>999 && sourceNumber<1000000)
-    {
-        buildString = buildString + thousands(sourceNumber);
-    }
-    //Millions placeholder
-    if (sourceNumber>999999 && sourceNumber<1000000000)
-    {
-        buildString = buildString + millions(sourceNumber);
-    }
-    //Billions placeholder
-    if (sourceNumber>999999999 && sourceNumber<2000000000)
-    {
-        buildString = buildString + billions(sourceNumber);
-    }
-
 
     return buildString;
 }
-string millions(int sourceNumber){
 
-}
-
-string billions(int sourceNumber){
-
-}
-
-string thousands(int sourceNumber){
-    string buildString; // This is the string to be built and returned out from the function.
-    string numberString = to_string(sourceNumber); //This is the integer converted to a string format.
-
-    string hundredsStrg;
-    string thousandsStrg = numberString;
-    if (numberString.length()>3){
-        hundredsStrg = numberString.substr(numberString.length()-3,3) ;//grabs the hundreds section of the sourceNumber.
-        cout<<"\n"<<hundredsStrg<<"\n";
-    }else{
-        hundredsStrg = numberString;
-    }
-
-    int hundredsInt = stoi(hundredsStrg);//makes the hundreds section back into an integer.
-
-    thousandsStrg.erase(thousandsStrg.length()-3); //Grabs the hundreds of thousands into a string
-    int thousandsInt = stoi(thousandsStrg); //converts the hundreds of thousands into an integer.
-
-    buildString = below19(thousandsInt) + " " + "Thousand" + " " + hundreds(hundredsInt);
-    return buildString;
-}
-
-string hundreds(int sourceNumber){
-    string buildString; // This is the string to be built and returned out from the function.
-    string numberString = to_string(sourceNumber); //This is the integer converted to a string format.
-    char hundredsChar;
-    int hundredsInt;
-
-    hundredsChar = numberString[numberString.length()-3];//Grabs the hundreds placeholder digit
-    hundredsInt = hundredsChar - '0';// The -'0' part converts the char to an int.
-    
-    if (hundredsInt<1){
-        buildString = below19(hundredsInt) + upToHundred(sourceNumber);
-    }else{
-        buildString = below19(hundredsInt) + " " + "hundred" + " " + upToHundred(sourceNumber);
-    }
-    return buildString;
-}
 
 string upToHundred(int sourceNumber){
     string buildString; // This is the string to be built and returned out from the function.
@@ -183,6 +114,11 @@ string upToHundred(int sourceNumber){
     return buildString;
 }
 
+/*
+Function name: below19()
+Description: Takes in an integer 1 to 19 and converts it into its text equivalent. 
+Error Handling: Validates that the input 
+*/
 string below19(int sourceNumber){
     string buildString; // This is the string to built and returned out from the function.
 
