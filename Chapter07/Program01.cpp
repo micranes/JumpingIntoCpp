@@ -19,6 +19,7 @@ string below19(int inputInt);
 string tensConvert(int inputInt);
 string hundredsConvert(int inputInt);
 string oneThru99(string numberString);
+string oneThru999(string numberString);
 
 
 //-------------START MAIN--------------
@@ -73,7 +74,7 @@ string numberToText(int inputInt){
 
     }else if (inputInt>99&&inputInt<1000)
     {
-        /* code */
+        buildString = buildString + oneThru999(numberString);
     
     }else if (inputInt>999&&inputInt<1000000)
     {
@@ -156,4 +157,26 @@ string oneThru99(string numberString){
     buildString = buildString + tensConvert(tenChar-'0') + " " + onesString;
     return buildString;
     
+}
+
+/**
+ * @brief Converts an integer (1-999) to its text equivalent.
+ * @name oneThru999
+ * @param String integerString - a number between 1 and 999 in string format.
+ * @return A string containing the text representation (e.g., "one" for 1).
+ * @pre num must be between 1 and 99, inclusive.
+ * @post Returns an empty string if the input is invalid.
+ * @throws std::invalid_argument if num is out of range.
+ */
+string oneThru999(string numberString){
+    string buildString;
+    string hundredsString = numberString.substr(0,1);
+    cout<<"\nhundredsString = "<<hundredsString;
+    string onesAndTens = numberString.substr(1,2);
+    cout<<"\nonesAndTens = "<<onesAndTens;
+    onesAndTens = oneThru99(onesAndTens);
+    cout<<"\nonesAndTens = "<<onesAndTens;
+    buildString = oneThru99(hundredsString) + " Hundred " + onesAndTens;
+
+    return buildString;
 }
