@@ -15,8 +15,6 @@ using namespace std;
 
 int userinput();
 string numberToText(int inputInt);
-string below19(int inputInt);
-string tensConvert(int inputInt);
 string hundredsConvert(int inputInt);
 string oneThru99(string numberString);
 string oneThru999(string numberString);
@@ -65,10 +63,7 @@ string numberToText(int inputInt){
     if(inputInt<0){buildString="negative "; inputInt=abs(inputInt);}//grabs the "-" from the int if needed, and converts the int to a positive.
     string numberString = to_string(inputInt); //This is the integer converted to a string format.
 
-    if(inputInt<20){
-        buildString = buildString + below19(inputInt);
-    
-    }else if (inputInt>19&&inputInt<100)
+    if(inputInt>0 && inputInt<100)
     {
         buildString = buildString + oneThru99(numberString);
 
@@ -87,74 +82,30 @@ string numberToText(int inputInt){
     return buildString;
 }
 
-/**
- * @brief Converts an integer (0-9) to its hundred multiplied text equivalent.
- * @name hundredsConvert
- * @param num The integer to convert (1 to 9).
- * @return A string containing the text representation (e.g., "hundred").
- * @pre num must be between 0 and 9, inclusive.
- * @post Returns an empty string if the input is invalid.
- * @throws std::invalid_argument if num is out of range.
- */
-string hundredsConvert(int inputInt){
-    if(inputInt<2||inputInt>9) throw invalid_argument("Number out of range");
-    const string words[] = {"","","twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety"};
-    return words[inputInt];
-}
 
 /**
- * @brief Converts an integer (2-9) to its ten multiplied text equivalent.
- * @name tensConvert
- * @param num The integer to convert (2 to 9).
- * @return A string containing the text representation (e.g., "twenty" for 2).
- * @pre num must be between 2 and 9, inclusive.
- * @post Returns an empty string if the input is invalid.
- * @throws std::invalid_argument if num is out of range.
- */
-string tensConvert(int inputInt){
-    if(inputInt<2||inputInt>9) throw invalid_argument("Number out of range");
-    const string words[] = {"","","twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety"};
-    return words[inputInt];
-}
-
-/**
- * @brief Converts an integer (1-19) to its text equivalent.
- * @name below19Function
- * @param num The integer to convert (1 to 19).
- * @return A string containing the text representation (e.g., "one" for 1).
- * @pre num must be between 1 and 19, inclusive.
- * @post Returns an empty string if the input is invalid.
- * @throws std::invalid_argument if num is out of range.
- */
-string below19(int inputInt){
-    //Validation: input must be and int between 1 and 19.
-    if(inputInt<1||inputInt>19) throw invalid_argument("Number out of range");
-
-    const string words[] = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine","ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen","seventeen", "eighteen", "nineteen"};
-
-    return words[inputInt];
-
-}
-
-/**
- * @brief Converts an integer (1-99) to its text equivalent.
+ * @brief Converts an integer (0-99) to its text equivalent.
  * @name oneThru99
  * @param String integerString - a number between 1 and 99 in string format.
  * @return A string containing the text representation (e.g., "one" for 1).
- * @pre num must be between 1 and 99, inclusive.
+ * @pre num must be between 0 and 99, inclusive.
  * @post Returns an empty string if the input is invalid.
  * @throws std::invalid_argument if num is out of range.
  */
 string oneThru99(string numberString){
+    if (numberString.size()>2)throw invalid_argument("oneThru99() received too large a string.");
     string buildString;
-    char onesChar = numberString[numberString.length()-1];//Character from the ones placeholder.
-    int onesInt = onesChar-'0';//Ones placeholder as an Integer.
-    string onesString; //Temp holder for ones placeholder string to be used in output.
-    if (onesInt==0){onesString = "";}//Checks for 0 in ones placeholder. If zero then makes a null string.
-    else{onesString = below19(onesInt);}
 
-    char tenChar = numberString[numberString.length()-2];//Grabs the tens placeholder in a Char. 
-    buildString = buildString + tensConvert(tenChar-'0') + " " + onesString;
+     const string below20[] = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine","ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen","seventeen", "eighteen", "nineteen"};
+     const string above20[] = {"","","twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety"};
+
+     int numValue = stoi(numberString);
+     if (numValue<20){buildString = below20[stoi(numberString)];}
+     else{
+        int tens = numberString[0]-'0';
+        int ones = numberString[1]-'0';
+        buildString = above20[tens] + " " + below20[ones];
+     }
     return buildString;
     
 }
@@ -170,13 +121,10 @@ string oneThru99(string numberString){
  */
 string oneThru999(string numberString){
     string buildString;
-    string hundredsString = numberString.substr(0,1);
-    cout<<"\nhundredsString = "<<hundredsString;
-    string onesAndTens = numberString.substr(1,2);
-    cout<<"\nonesAndTens = "<<onesAndTens;
-    onesAndTens = oneThru99(onesAndTens);
-    cout<<"\nonesAndTens = "<<onesAndTens;
-    buildString = oneThru99(hundredsString) + " Hundred " + onesAndTens;
+//    string hundredsString = numberString.substr(0,1);//grabs the first digit of the input
+//    string onesAndTens = numberString.substr(1,2);//grabs the leftover digits which are 1-99
+//    onesAndTens = oneThru99(onesAndTens);
+    buildString = oneThru99(numberString.substr(0,1)) + " hundred " + oneThru99(numberString.substr(1,2));
 
     return buildString;
 }

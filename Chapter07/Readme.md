@@ -18,4 +18,7 @@ So I am getting ready to re write my program once more. I just realized that (I 
 After getting a ways into coding I realized that I need :
 1. A function that handles everything from 1 to 99.
     I had this split into two functions before, 1-19, and 20-99. But I found it is too easy in the mix of reusing things to write functions for the hundreds up that operate inconsistently for various reasons. So that 1 to 99 function needs to be solid and no calling the functions it uses from outside of it. everything needs to go thru it.
+
+## Mon Jun 23 01:32:57 PM CDT 2025
+1 - 999 done finally. And in a way I am happy with. Not that it is the best way. I don't know enough yet to know what the best way is. But it is way better than it was at the beginning of the day and a lot less confusing.
     
