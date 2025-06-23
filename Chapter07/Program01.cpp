@@ -17,7 +17,7 @@ int userinput();
 string numberToText(int inputInt);
 string below19(int inputInt);
 string tensConvert(int inputInt);
-
+string hundredsConvert(int inputInt);
 
 
 //-------------START MAIN--------------
@@ -49,27 +49,46 @@ int userinput(){
 }
 
 //-------------NUMBER TO TEXT CONVERSION--------------
+/**
+ * @brief Takes an integer and converts it to english, 1 converts to "one".
+ * @namenumberToText
+ * @param inputInt 
+ * @return string 
+ * @pre must be an integer between -2 billion and 2 billion
+ * @post Returns an empty string if invalid
+ * @throws std::invalid_argument if num is out of range.
+ */
 string numberToText(int inputInt){
     string buildString; // This is the string to built and returned out from the function.
+    if(inputInt<0){buildString="negative "; inputInt=abs(inputInt);}//grabs the "-" from the int if needed, and converts the int to a positive.
     string numberString = to_string(inputInt); //This is the integer converted to a string format.
-        
-    if(inputInt<0){buildString="negative "; inputInt=abs(inputInt);}
 
-    for (int i = numberString.length();i>0;i--){
-
-        buildString = buildString + below19();
+    if(inputInt<20){
+        buildString = buildString + below19(inputInt);
+    }else if (inputInt>19&&inputInt<100)
+    {
+        /* code */
+    }else if (inputInt>99&&inputInt<1000)
+    {
+        /* code */
+    }else if (inputInt>999&&inputInt<1000000)
+    {
+        /* code */
+    }else
+    {
+        /* code */
     }
- 
     return buildString;
 }
+
 /**
  * @brief Converts an integer (0-9) to its hundred multiplied text equivalent.
+ * @name hundredsConvert
  * @param num The integer to convert (1 to 9).
  * @return A string containing the text representation (e.g., "hundred").
  * @pre num must be between 0 and 9, inclusive.
  * @post Returns an empty string if the input is invalid.
  * @throws std::invalid_argument if num is out of range.
- * @name tensConvert
  */
 string hundredsConvert(int inputInt){
     if(inputInt<2||inputInt>9) throw invalid_argument("Number out of range");
@@ -79,12 +98,12 @@ string hundredsConvert(int inputInt){
 
 /**
  * @brief Converts an integer (2-9) to its ten multiplied text equivalent.
+ * @name tensConvert
  * @param num The integer to convert (2 to 9).
  * @return A string containing the text representation (e.g., "twenty" for 2).
  * @pre num must be between 2 and 9, inclusive.
  * @post Returns an empty string if the input is invalid.
  * @throws std::invalid_argument if num is out of range.
- * @name tensConvert
  */
 string tensConvert(int inputInt){
     if(inputInt<2||inputInt>9) throw invalid_argument("Number out of range");
@@ -94,12 +113,12 @@ string tensConvert(int inputInt){
 
 /**
  * @brief Converts an integer (1-19) to its text equivalent.
+ * @name below19Function
  * @param num The integer to convert (1 to 19).
  * @return A string containing the text representation (e.g., "one" for 1).
  * @pre num must be between 1 and 19, inclusive.
  * @post Returns an empty string if the input is invalid.
  * @throws std::invalid_argument if num is out of range.
- * @name below19Function
  */
 string below19(int inputInt){
     //Validation: input must be and int between 1 and 19.
