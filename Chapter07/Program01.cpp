@@ -122,7 +122,6 @@ string tensConvert(int inputInt){
  */
 string below19(int inputInt){
     //Validation: input must be and int between 1 and 19.
-    cout<<inputInt;
     if(inputInt<1||inputInt>19) throw invalid_argument("Number out of range");
 
     const string words[] = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine","ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen","seventeen", "eighteen", "nineteen"};
