@@ -18,6 +18,7 @@ string numberToText(int inputInt);
 string below19(int inputInt);
 string tensConvert(int inputInt);
 string hundredsConvert(int inputInt);
+string oneThru99(string numberString);
 
 
 //-------------START MAIN--------------
@@ -68,15 +69,8 @@ string numberToText(int inputInt){
     
     }else if (inputInt>19&&inputInt<100)
     {
-        char onesChar = numberString[numberString.length()-1];//Character from the ones placeholder.
-        int onesInt = onesChar-'0';//Ones placeholder as an Integer.
-        string onesString; //Temp holder for ones placeholder string to be used in output.
-        if (onesInt==0){onesString = "";}//Checks for 0 in ones placeholder. If zero then makes a null string.
-        else{onesString = below19(onesInt);}
+        buildString = buildString + oneThru99(numberString);
 
-        char tenChar = numberString[numberString.length()-2];//Grabs the tens placeholder in a Char. 
-        buildString = buildString + tensConvert(tenChar-'0') + " " + onesString;
-    
     }else if (inputInt>99&&inputInt<1000)
     {
         /* code */
@@ -139,4 +133,27 @@ string below19(int inputInt){
 
     return words[inputInt];
 
+}
+
+/**
+ * @brief Converts an integer (1-99) to its text equivalent.
+ * @name oneThru99
+ * @param String integerString - a number between 1 and 99 in string format.
+ * @return A string containing the text representation (e.g., "one" for 1).
+ * @pre num must be between 1 and 99, inclusive.
+ * @post Returns an empty string if the input is invalid.
+ * @throws std::invalid_argument if num is out of range.
+ */
+string oneThru99(string numberString){
+    string buildString;
+    char onesChar = numberString[numberString.length()-1];//Character from the ones placeholder.
+    int onesInt = onesChar-'0';//Ones placeholder as an Integer.
+    string onesString; //Temp holder for ones placeholder string to be used in output.
+    if (onesInt==0){onesString = "";}//Checks for 0 in ones placeholder. If zero then makes a null string.
+    else{onesString = below19(onesInt);}
+
+    char tenChar = numberString[numberString.length()-2];//Grabs the tens placeholder in a Char. 
+    buildString = buildString + tensConvert(tenChar-'0') + " " + onesString;
+    return buildString;
+    
 }
