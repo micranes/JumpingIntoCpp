@@ -14,9 +14,9 @@ and 2 billion.
 using namespace std;
 
 int userinput();
-string numberToText(int sourceNumber);
-string below19(int sourceNumber);
-string upToHundred(int sourceNumber);
+string numberToText(int inputInt);
+string below19(int inputInt);
+string tensConvert(int inputInt);
 
 
 
@@ -49,137 +49,65 @@ int userinput(){
 }
 
 //-------------NUMBER TO TEXT CONVERSION--------------
-string numberToText(int sourceNumber){
+string numberToText(int inputInt){
     string buildString; // This is the string to built and returned out from the function.
-    string numberString = to_string(sourceNumber); //This is the integer converted to a string format.
-    
-    
-    if(sourceNumber<0){buildString="negative "; sourceNumber=abs(sourceNumber);}
-    if(sourceNumber<20)
-    {
-        buildString = buildString + below19(sourceNumber);
-    }
-    //Tens placeholder
-    if (sourceNumber>19 && sourceNumber<100)
-    {
-       buildString = buildString + upToHundred(sourceNumber);
-    }
+    string numberString = to_string(inputInt); //This is the integer converted to a string format.
+        
+    if(inputInt<0){buildString="negative "; inputInt=abs(inputInt);}
 
+    for (int i = numberString.length();i>0;i--){
+
+        buildString = buildString + below19();
+    }
+ 
     return buildString;
 }
-
-
-string upToHundred(int sourceNumber){
-    string buildString; // This is the string to be built and returned out from the function.
-    string numberString = to_string(sourceNumber); //This is the integer converted to a string format.
-
-    char onesChar;
-    char tensChar;
-    int ones;
-    int tens;
-    
-    onesChar = numberString[numberString.length()-1]; //copies the ones digit into a char.
-    ones = onesChar - '0'; //converts char to int
-    
-    tensChar = numberString[numberString.length()-2]; //copies the tens digit into a char.
-    tens = tensChar - '0'; //converts char to int
-    if (tens == 2)
-    {
-        buildString = "twenty";
-    } else if (tens == 3)
-    {
-        buildString = "thirty";
-    } else if (tens == 4)
-    {
-        buildString = "fourty";
-    } else if (tens == 5)
-    {
-        buildString = "fifty";
-    } else if (tens == 6)
-    {
-        buildString = "sixty";
-    } else if (tens == 7)
-    {
-        buildString = "seventy";
-    } else if (tens == 8)
-    {
-        buildString = "eighty";
-    } else if (tens == 9)
-    {
-        buildString = "ninety";
-    }
-    
-    
-    buildString = buildString + " " + below19(ones);
-    return buildString;
+/**
+ * @brief Converts an integer (0-9) to its hundred multiplied text equivalent.
+ * @param num The integer to convert (1 to 9).
+ * @return A string containing the text representation (e.g., "hundred").
+ * @pre num must be between 0 and 9, inclusive.
+ * @post Returns an empty string if the input is invalid.
+ * @throws std::invalid_argument if num is out of range.
+ * @name tensConvert
+ */
+string hundredsConvert(int inputInt){
+    if(inputInt<2||inputInt>9) throw invalid_argument("Number out of range");
+    const string words[] = {"","","twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety"};
+    return words[inputInt];
 }
 
-/*
-Function name: below19()
-Description: Takes in an integer 1 to 19 and converts it into its text equivalent. 
-Error Handling: Validates that the input 
-*/
-string below19(int sourceNumber){
-    string buildString; // This is the string to built and returned out from the function.
+/**
+ * @brief Converts an integer (2-9) to its ten multiplied text equivalent.
+ * @param num The integer to convert (2 to 9).
+ * @return A string containing the text representation (e.g., "twenty" for 2).
+ * @pre num must be between 2 and 9, inclusive.
+ * @post Returns an empty string if the input is invalid.
+ * @throws std::invalid_argument if num is out of range.
+ * @name tensConvert
+ */
+string tensConvert(int inputInt){
+    if(inputInt<2||inputInt>9) throw invalid_argument("Number out of range");
+    const string words[] = {"","","twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety"};
+    return words[inputInt];
+}
 
-    if (sourceNumber==1)
-        {
-            buildString = buildString+"one";
-        }else if (sourceNumber==2)
-        {
-            buildString = buildString+"two";
-        }else if (sourceNumber==3)
-        {
-            buildString = buildString+"three";
-        }else if (sourceNumber==4)
-        {
-            buildString = buildString+"four";
-        }else if (sourceNumber==5)
-        {
-            buildString = buildString+"five";
-        }else if (sourceNumber==6)
-        {
-            buildString = buildString+"six";
-        }else if (sourceNumber==7)
-        {
-            buildString = buildString+"seven";
-        }else if (sourceNumber==8)
-        {
-            buildString = buildString+"eight";
-        }else if (sourceNumber==9)
-        {
-            buildString = buildString+"nine";
-        }else if (sourceNumber==10)
-        {
-            buildString = buildString+"ten";
-        }else if (sourceNumber==11)
-        {
-            buildString = buildString+"eleven";
-        }else if (sourceNumber==12)
-        {
-            buildString = buildString+"twelve";
-        }else if (sourceNumber==13)
-        {
-            buildString = buildString+"thirteen";
-        }else if (sourceNumber==14)
-        {
-            buildString = buildString+"fourteen";
-        }else if (sourceNumber==15)
-        {
-            buildString = buildString+"fifteen";
-        }else if (sourceNumber==16)
-        {
-            buildString = buildString+"sixteen";
-        }else if (sourceNumber==17)
-        {
-            buildString = buildString+"seventeen";
-        }else if (sourceNumber==18)
-        {
-            buildString = buildString+"eighteen";
-        }else if (sourceNumber==19)
-        {
-            buildString = buildString+"nineteen";
-        }
-    return buildString;
+/**
+ * @brief Converts an integer (1-19) to its text equivalent.
+ * @param num The integer to convert (1 to 19).
+ * @return A string containing the text representation (e.g., "one" for 1).
+ * @pre num must be between 1 and 19, inclusive.
+ * @post Returns an empty string if the input is invalid.
+ * @throws std::invalid_argument if num is out of range.
+ * @name below19Function
+ */
+string below19(int inputInt){
+    //Validation: input must be and int between 1 and 19.
+    cout<<inputInt;
+    if(inputInt<1||inputInt>19) throw invalid_argument("Number out of range");
+
+    const string words[] = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine","ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen","seventeen", "eighteen", "nineteen"};
+
+    return words[inputInt];
 
 }
