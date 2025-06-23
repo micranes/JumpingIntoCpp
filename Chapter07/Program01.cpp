@@ -65,15 +65,26 @@ string numberToText(int inputInt){
 
     if(inputInt<20){
         buildString = buildString + below19(inputInt);
+    
     }else if (inputInt>19&&inputInt<100)
     {
-        /* code */
+        char onesChar = numberString[numberString.length()-1];//Character from the ones placeholder.
+        int onesInt = onesChar-'0';//Ones placeholder as an Integer.
+        string onesString; //Temp holder for ones placeholder string to be used in output.
+        if (onesInt==0){onesString = "";}//Checks for 0 in ones placeholder. If zero then makes a null string.
+        else{onesString = below19(onesInt);}
+
+        char tenChar = numberString[numberString.length()-2];//Grabs the tens placeholder in a Char. 
+        buildString = buildString + tensConvert(tenChar-'0') + " " + onesString;
+    
     }else if (inputInt>99&&inputInt<1000)
     {
         /* code */
+    
     }else if (inputInt>999&&inputInt<1000000)
     {
         /* code */
+    
     }else
     {
         /* code */
